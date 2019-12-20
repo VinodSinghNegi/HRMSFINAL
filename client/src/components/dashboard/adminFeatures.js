@@ -17,6 +17,7 @@ import { viewMyTeam } from "../../actions/viewMyTeam";
 import AnnouncementIcon from "@material-ui/icons/Announcement";
 import TextFieldsIcon from "@material-ui/icons/TextFields";
 import KraRequest from "../kraRequest";
+import DescriptionIcon from "@material-ui/icons/Description";
 
 class Adminfeatures extends Component {
   render() {
@@ -85,7 +86,7 @@ class Adminfeatures extends Component {
           }}
         >
           <ListItemIcon>
-            <AnnouncementIcon />
+            <DescriptionIcon />
           </ListItemIcon>
           <ListItemText primary="Leave Requests" />
         </ListItem>

@@ -136,7 +136,7 @@ const ApplyLeave = ({
         <br />
         <div style={{ width: "250px", margin: "0 auto" }}>
           Leave Type
-<StyledSelect
+          <StyledSelect
             multi={false}
             color="orange"
             searchBy="name"
@@ -191,7 +191,7 @@ const ApplyLeave = ({
           <br />
           <div style={{ width: "250px", margin: "0 auto" }}>
             Reason
-<br />
+            <br />
             <input
               style={{ width: "250px", height: "40px", margin: "0 auto" }}
               name="reason"
@@ -204,7 +204,7 @@ const ApplyLeave = ({
             <br />
             <MDBBtn size="md" onClick={onSubmit}>
               Apply
-</MDBBtn>
+            </MDBBtn>
             <br />
             {responsemsg}
           </div>
@@ -218,7 +218,7 @@ const ApplyLeave = ({
       <br />
       <br />
 
-      {/ aplied leaves section below /}
+      {/* aplied leaves section below */}
 
       <Paper className={classes.root}>
         <div className={classes.tableWrapper}>
@@ -264,7 +264,7 @@ const ApplyLeave = ({
                       }}
                     >
                       Delete
-</MDBBtn>
+                    </MDBBtn>
                   </TableCell>
                 </TableRow>
               ))}
@@ -276,7 +276,7 @@ const ApplyLeave = ({
   );
 };
 const StyledSelect = styled(Select)`
-${({ dropdownRenderer }) =>
+  ${({ dropdownRenderer }) =>
     dropdownRenderer &&
     `.react-dropdown-select-dropdown {
 overflow: initial;

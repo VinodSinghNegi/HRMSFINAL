@@ -1,5 +1,5 @@
 // import Axios from "axios";
-import Axios from "../api/axios"
+import Axios from "../api/axios";
 
 import { LEAVE_REQUEST, APPROVE_LEAVES, GET_ERRORS } from "./types";
 import { setCurrentComponent } from "./componentActions";
@@ -28,13 +28,11 @@ export const getLeaveRequest = () => dispatch => {
 };
 
 export const actionleaves = (id, value) => async dispatch => {
-  console.log(id, value)
   Axios.post(`/manager/updateleave/employees/${id}/${value}`)
     .then(res => {
-      response = res.data;
       dispatch({
         type: APPROVE_LEAVES,
-        payload: response
+        payload: res.data
       });
     })
     .catch(err => {
@@ -44,5 +42,3 @@ export const actionleaves = (id, value) => async dispatch => {
       });
     });
 };
-
-

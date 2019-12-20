@@ -21,6 +21,7 @@ import Chart from "../graph";
 import Applyleave from "../applyLeave";
 import { Divider } from "@material-ui/core";
 import DeckIcon from "@material-ui/icons/Deck";
+import DescriptionIcon from "@material-ui/icons/Description";
 class ManagerFeatures extends Component {
   state = { disabled: false, flag: false };
 
@@ -117,11 +118,11 @@ class ManagerFeatures extends Component {
           }}
         >
           <ListItemIcon>
-            <AnnouncementIcon />
+            <DescriptionIcon />
           </ListItemIcon>
           <ListItemText primary="Leave Requests" />
         </ListItem>
-        <Divider />
+
         <ListItem
           button
           onClick={() => {
@@ -131,7 +132,7 @@ class ManagerFeatures extends Component {
           <ListItemIcon>
             <DeckIcon />
           </ListItemIcon>
-          <ListItemText primary="Leave Management" />
+          <ListItemText primary="Apply Leave" />
         </ListItem>
       </div>
     );

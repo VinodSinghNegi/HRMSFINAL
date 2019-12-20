@@ -78,7 +78,7 @@ class Employee extends Component {
           </ListItemIcon>
           <ListItemText primary="All KRA" />
         </ListItem>
-        <Divider />
+  
         <ListItem
           button
           onClick={() => {
@@ -88,7 +88,7 @@ class Employee extends Component {
           <ListItemIcon>
             <DeckIcon />
           </ListItemIcon>
-          <ListItemText primary="Leave Management" />
+          <ListItemText primary="Apply Leave" />
         </ListItem>
       </div>
     );

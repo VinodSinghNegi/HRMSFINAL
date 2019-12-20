@@ -8,10 +8,14 @@ const applyleave = async (req, res, next) => {
     if (instance) {
       for (let index = 0; index < instance.length; index++) {
         if (
-          (new Date(fromDate).getDate() >= instance[index].fromDate.getDate() &&
-            new Date(fromDate).getDate() <= instance[index].toDate.getDate()) ||
-          (new Date(toDate).getDate() >= instance[index].fromDate.getDate() &&
-            new Date(toDate).getDate() <= instance[index].toDate.getDate())
+          (new Date(fromDate).setHours(0, 0, 0, 0) >=
+            instance[index].fromDate.setHours(0, 0, 0, 0) &&
+            new Date(fromDate).setHours(0, 0, 0, 0) <=
+              instance[index].toDate.setHours(0, 0, 0, 0)) ||
+          (new Date(toDate).setHours(0, 0, 0, 0) >=
+            instance[index].fromDate.setHours(0, 0, 0, 0) &&
+            new Date(toDate).setHours(0, 0, 0, 0) <=
+              instance[index].toDate.setHours(0, 0, 0, 0))
         ) {
           return res.status(400).send({ msg: "Leaves overlapping" });
         }
@@ -22,9 +26,9 @@ const applyleave = async (req, res, next) => {
       ...req.body
     });
     instance.userId = req._id;
-    instance.reportingManagerId=req.user.reportingManager
+    instance.reportingManagerId = req.user.reportingManager;
     await instance.save();
-    res.send("success");
+    res.send({ msg: "successfully applied" });
     next();
   } catch (error) {
     console.log(error.message);
@@ -74,6 +78,5 @@ const getleaveseeds = async (req, res, next) => {
     res.status(500).send("Leave Seeds Error");
   }
 };
-
 
 module.exports = { applyleave, getLeave, deleteLeave, getleaveseeds };

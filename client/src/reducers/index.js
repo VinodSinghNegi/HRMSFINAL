@@ -11,7 +11,7 @@ import getnotification from "./notifications";
 import blogs from "./blogs";
 import leaveRequest from "./leaveRequest";
 import employeeData from "./employeeData";
-import leaves from "./leavereducer"
+import leaves from "./leavereducer";
 export default combineReducers({
   auth: authReducer,
   addUserForm: addUser,
@@ -25,5 +25,5 @@ export default combineReducers({
   blogs: blogs,
   HRfields: employeeData,
   leaves: leaves,
-  leaveRequest:leaveRequest
+  leaveRequests: leaveRequest
 });
