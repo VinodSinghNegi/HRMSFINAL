@@ -3,7 +3,13 @@ const mongoose = require("mongoose");
 const leaveSchema = new mongoose.Schema({
   userId: {
     type: Number,
-    req: true
+    req: true,
+    ref:"User"
+  },
+  reportingManagerId: {
+    type: Number,
+    ref: "User",
+    required: true
   },
   fromDate: {
     type: Date,

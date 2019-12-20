@@ -22,6 +22,7 @@ const applyleave = async (req, res, next) => {
       ...req.body
     });
     instance.userId = req._id;
+    instance.reportingManagerId=req.user.reportingManager
     await instance.save();
     res.send("success");
     next();
@@ -73,4 +74,6 @@ const getleaveseeds = async (req, res, next) => {
     res.status(500).send("Leave Seeds Error");
   }
 };
+
+
 module.exports = { applyleave, getLeave, deleteLeave, getleaveseeds };
