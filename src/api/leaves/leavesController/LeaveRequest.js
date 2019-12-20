@@ -22,8 +22,15 @@ const updateRequest=async (req,res,next)=>{
         const {id,value}=req.params
         const leave=await Leave.findByIdAndUpdate(id,{Status:value},{
             new:true
-        })
-        res.send(leave)
+        }).populate("userId leaveData","name")
+        if(!leave){
+            return res.status(400).send({msg:"No request available"})
+        }
+        if(value==="Approved"){
+            return res.send(leave)
+        }
+        res.send("succesfully updated")
+       
         next()
     } catch (error) {
         console.log(error.message);
