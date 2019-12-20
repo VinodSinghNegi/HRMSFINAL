@@ -9,6 +9,7 @@ import viewUsers from "./viewUsers";
 import viewMyteam from "./viewMyTeam";
 import getnotification from "./notifications";
 import blogs from "./blogs";
+import leaveRequest from "./leaveRequest";
 import employeeData from "./employeeData";
 import leaves from "./leavereducer"
 export default combineReducers({
@@ -23,5 +24,6 @@ export default combineReducers({
   getnotification: getnotification,
   blogs: blogs,
   HRfields: employeeData,
-  leaves:leaves
+  leaves: leaves,
+  leaveRequest:leaveRequest
 });

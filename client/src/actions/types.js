@@ -11,6 +11,7 @@ export const GET_ERRORS = "GET_ERRORS";
 export const USER_LOADING = "USER_LOADING";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const KRA_REQUEST = "KRA_REQUEST";
+export const LEAVE_REQUEST = "LEAVE_REQUEST";
 export const SET_CURRENT_COMPONENT = "SET_CURRENT_COMPONENT";
 export const VIEW_USERS = "VIEW_USERS";
 export const UPDATE_KRA = "UPDATE_KRA";
@@ -28,4 +29,4 @@ export const GET_LEAVE = "GET_LEAVE";
 export const APPLY_LEAVE = "APPLY_LEAVE";
 export const DELETE_LEAVE = "DELETE_LEAVE";
 export const LEAVE_SEEDS = "LEAVE_SEEDS";
-
+export const APPROVE_LEAVES = "APPROVE_LEAVES";

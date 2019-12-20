@@ -11,6 +11,7 @@ import Myprofile from "../myprofile";
 import AddUser from "../addUser";
 import ViewUsers from "../viewUser";
 import ViewMyTeam from "../viewMyTeam";
+import LeaveRequests from "../leaveRequests";
 import { viewUsers } from "../../actions/viewUser";
 import { viewMyTeam } from "../../actions/viewMyTeam";
 import AnnouncementIcon from "@material-ui/icons/Announcement";
@@ -76,6 +77,17 @@ class Adminfeatures extends Component {
             <AnnouncementIcon />
           </ListItemIcon>
           <ListItemText primary="KRA Request" />
+        </ListItem>
+        <ListItem
+          button
+          onClick={() => {
+            this.props.changeComponent(<LeaveRequests />);
+          }}
+        >
+          <ListItemIcon>
+            <AnnouncementIcon />
+          </ListItemIcon>
+          <ListItemText primary="Leave Requests" />
         </ListItem>
       </div>
     );

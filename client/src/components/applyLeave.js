@@ -82,7 +82,8 @@ const ApplyLeave = ({
   leaveState: { leaves, seeds },
   applyLeave,
   getLeave,
-  deleteLeave
+  deleteLeave,
+  responsemsg
 }) => {
   const [formdata, setformdata] = React.useState({
     fromDate: new Date(),
@@ -90,6 +91,7 @@ const ApplyLeave = ({
     leaveData: null,
     reason: "personal"
   });
+
   const { fromDate, toDate, leaveData, reason } = formdata;
   useEffect(() => {
     getLeaveSeeds();
@@ -97,17 +99,20 @@ const ApplyLeave = ({
   }, [getLeaveSeeds, getLeave]);
 
   const handleDateChangeFrom = date => {
-    if (date.getDate() >= new Date().getDate()) {
+    if (date.setHours(0, 0, 0, 0) >= new Date().setHours(0, 0, 0, 0)) {
       setformdata({ ...formdata, fromDate: date, toDate: date });
     } else {
-      console.log("error");
+      window.alert("You cannot select past date");
     }
   };
   const handleDateChangeTo = date => {
-    if (date >= toDate && date >= fromDate) {
+    if (
+      date.setHours(0, 0, 0, 0) >= toDate.setHours(0, 0, 0, 0) &&
+      date.setHours(0, 0, 0, 0) >= fromDate.setHours(0, 0, 0, 0)
+    ) {
       setformdata({ ...formdata, toDate: date });
     } else {
-      console.log("error");
+      window.alert("You cannot select past2 date");
     }
   };
 
@@ -131,7 +136,7 @@ const ApplyLeave = ({
         <br />
         <div style={{ width: "250px", margin: "0 auto" }}>
           Leave Type
-          <StyledSelect
+<StyledSelect
             multi={false}
             color="orange"
             searchBy="name"
@@ -186,7 +191,7 @@ const ApplyLeave = ({
           <br />
           <div style={{ width: "250px", margin: "0 auto" }}>
             Reason
-            <br />
+<br />
             <input
               style={{ width: "250px", height: "40px", margin: "0 auto" }}
               name="reason"
@@ -199,7 +204,9 @@ const ApplyLeave = ({
             <br />
             <MDBBtn size="md" onClick={onSubmit}>
               Apply
-            </MDBBtn>
+</MDBBtn>
+            <br />
+            {responsemsg}
           </div>
         </MuiPickersUtilsProvider>
         <br />
@@ -211,7 +218,7 @@ const ApplyLeave = ({
       <br />
       <br />
 
-      {/* aplied leaves section below */}
+      {/ aplied leaves section below /}
 
       <Paper className={classes.root}>
         <div className={classes.tableWrapper}>
@@ -244,7 +251,9 @@ const ApplyLeave = ({
                   <TableCell align="center">
                     <Moment format="DD/MM/YYYY">{user.toDate}</Moment>
                   </TableCell>
-                  <TableCell align="center">{user.leaveData.name}</TableCell>
+                  <TableCell align="center">
+                    {user.leaveData && user.leaveData.name}
+                  </TableCell>
                   <TableCell align="center">{user.Status}</TableCell>
                   <TableCell align="center">
                     <MDBBtn
@@ -255,7 +264,7 @@ const ApplyLeave = ({
                       }}
                     >
                       Delete
-                    </MDBBtn>
+</MDBBtn>
                   </TableCell>
                 </TableRow>
               ))}
@@ -267,14 +276,15 @@ const ApplyLeave = ({
   );
 };
 const StyledSelect = styled(Select)`
-  ${({ dropdownRenderer }) =>
+${({ dropdownRenderer }) =>
     dropdownRenderer &&
     `.react-dropdown-select-dropdown {
 overflow: initial;
 }`}
 `;
 const mapStateToProps = state => ({
-  leaveState: state.leaves
+  leaveState: state.leaves,
+  responsemsg: state.errors.msg
 });
 export default connect(mapStateToProps, {
   getLeaveSeeds,

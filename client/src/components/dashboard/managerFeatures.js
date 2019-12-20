@@ -11,6 +11,7 @@ import FillKra from "../fillkra";
 import Myprofile from "../myprofile";
 import ViewKra from "../viewkra";
 import ViewMyTeam from "../viewMyTeam";
+import LeaveRequests from "../leaveRequests";
 import { viewMyTeam } from "../../actions/viewMyTeam";
 import KraRequest from "../kraRequest";
 import AnnouncementIcon from "@material-ui/icons/Announcement";
@@ -108,6 +109,17 @@ class ManagerFeatures extends Component {
             <AnnouncementIcon />
           </ListItemIcon>
           <ListItemText primary="KRA Request" />
+        </ListItem>
+        <ListItem
+          button
+          onClick={() => {
+            this.props.changeComponent(<LeaveRequests />);
+          }}
+        >
+          <ListItemIcon>
+            <AnnouncementIcon />
+          </ListItemIcon>
+          <ListItemText primary="Leave Requests" />
         </ListItem>
         <Divider />
         <ListItem

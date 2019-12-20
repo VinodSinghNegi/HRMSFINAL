@@ -2,7 +2,7 @@ var express = require("express");
 const { check, validationResult } = require("express-validator");
 var router = express.Router();
 const userauth = require("../../api/middleware/userauth");
-const managerauth = require("../../api/middleware/managerauth");
+const common = require("../../api/middleware/common");
 
 const {
   applyleave,
@@ -16,8 +16,8 @@ router.post("/applyleave", userauth, applyleave);
 router.get("/getleave", userauth, getLeave);
 router.delete("/deleteleave/:id", userauth, deleteLeave);
 router.get("/leave_seeds",userauth,getleaveseeds)
-router.get("/manager/leave/employees",managerauth,leaveRequest)
-router.post("/manager/updateleave/employees/:id/:value",managerauth,updateRequest)
+router.get("/manager/leave/employees",common,leaveRequest)
+router.post("/manager/updateleave/employees/:id/:value",common,updateRequest)
 
 
 module.exports = router;
