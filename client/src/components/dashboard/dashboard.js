@@ -36,6 +36,7 @@ import Changepassword from "../ChangePassword";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import Posts from "../postList";
 import Hrfeatures from "./hrfeatures";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -160,9 +161,6 @@ function Dashboard(props) {
   const id = open ? "simple-popover" : undefined;
   if (flag === false) {
     setDesignation(props.auth.user.userdata.designation_id.name);
-    if (props.auth.user.userdata.department_id) {
-      setDepartment(props.auth.user.userdata.department_id.name);
-    }
 
     if (designation === "Admin") {
       setFlag(true);
@@ -170,12 +168,12 @@ function Dashboard(props) {
     } else if (designation === "Manager") {
       setFlag(true);
       setComponent(<Managerfeatures changeComponent={changeComponent} />);
-    } else if (department === "Human Resource") {
-      setFlag(true);
-      setComponent(<Hrfeatures changeComponent={changeComponent} />);
-    } else if (designation === "Employee/Team Lead") {
+    } else if (designation === "Employee") {
       setFlag(true);
       setComponent(<Employeefeatures changeComponent={changeComponent} />);
+    } else if (designation === "Human Resource") {
+      setFlag(true);
+      setComponent(<Hrfeatures changeComponent={changeComponent} />);
     }
   }
   return (

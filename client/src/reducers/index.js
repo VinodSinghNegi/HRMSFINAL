@@ -7,9 +7,10 @@ import addKra from "./addKra";
 import kraRequest from "./kraRequestReducer";
 import viewUsers from "./viewUsers";
 import viewMyteam from "./viewMyTeam";
-import getnotification from './notifications'
-import blogs from './blogs'
-
+import getnotification from "./notifications";
+import blogs from "./blogs";
+import employeeData from "./employeeData";
+import leaves from "./leavereducer"
 export default combineReducers({
   auth: authReducer,
   addUserForm: addUser,
@@ -19,6 +20,8 @@ export default combineReducers({
   errors: errorReducer,
   allusers: viewUsers,
   myteam: viewMyteam,
-  getnotification:getnotification,
-  blogs:blogs
+  getnotification: getnotification,
+  blogs: blogs,
+  HRfields: employeeData,
+  leaves:leaves
 });

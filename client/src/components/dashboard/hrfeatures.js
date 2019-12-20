@@ -21,29 +21,19 @@ import Divider from "@material-ui/core/Divider";
 class ManagerFeatures extends Component {
   state = { disabled: false, flag: false };
 
+  componentDidMount() {
+    const d = new Date().getDate();
+    if (d >= 2 && d <= 30 && this.props.kraStatus) {
+      this.setState({ disabled: true });
+    }
+  }
+
   check = () => {
     this.setState({ disabled: true });
   };
   render() {
     return (
       <div>
-        <br />
-
-        <ListItem
-          button
-          onClick={() => {
-            this.props.changeComponent(<ViewUsers />);
-          }}
-        >
-          <ListItemIcon>
-            <LockOpenIcon />
-          </ListItemIcon>
-          <ListItemText primary="Switch to Official" />
-        </ListItem>
-        <br />
-        <Divider />
-        <br />
-
         <ListItem
           button
           onClick={() => {
@@ -55,50 +45,12 @@ class ManagerFeatures extends Component {
           </ListItemIcon>
           <ListItemText primary="Profile" />
         </ListItem>
-
-        <ListItem
-          button
-          onClick={() => {
-            this.props.changeComponent(<Chart />);
-          }}
-        >
-          <ListItemIcon>
-            <AssessmentIcon />
-          </ListItemIcon>
-          <ListItemText primary="Performance" />
-        </ListItem>
-
-        <ListItem
-          disabled={this.state.disabled}
-          button
-          onClick={() => {
-            this.props.changeComponent(<FillKra check={this.check} />);
-          }}
-        >
-          <ListItemIcon>
-            <InsertCommentIcon />
-          </ListItemIcon>
-          <ListItemText primary="Fill KRA" />
-        </ListItem>
-
-        <ListItem
-          button
-          onClick={() => {
-            this.props.changeComponent(<ViewKra />);
-          }}
-        >
-          <ListItemIcon>
-            <PageviewIcon />
-          </ListItemIcon>
-          <ListItemText primary="All KRA" />
-        </ListItem>
       </div>
     );
   }
 }
 const mapStateToProps = state => {
   return {
-    myteam: state.myteam.myteam,
     kraStatus: state.auth.user.userdata.filledKra
   };
 };

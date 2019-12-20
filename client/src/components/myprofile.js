@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import { connect } from "react-redux";
 import { Header } from "semantic-ui-react";
-
+import {getLeave} from "../actions/leaveaction"
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
@@ -89,7 +89,8 @@ function MyProfile(props) {
           />
           <br /> <br />
         </Grid>
-        {user.designation_id.name !== "Admin" ? (
+        {user.designation_id.name === "Admin" ||
+        user.designation_id.name === "Human Resource" ? null : (
           <>
             <Grid item xs={11}>
               <TextField
@@ -113,7 +114,7 @@ function MyProfile(props) {
               />
             </Grid>
           </>
-        ) : null}
+        )}
       </Grid>
     </Paper>
   );

@@ -2,7 +2,7 @@ const Admin = require("../user.model");
 const Department = require("../../department/department.model");
 const Designation = require("../../designation/designation.model");
 const Kra = require("../../k.r.a_attributes/k.r.a.attr.model");
-
+const Leave=require("../../leaves/leaveType.model")
 const seeds = async (req, res) => {
   try {
     const designationn = await Designation.findOne({ name: "Manager" });
@@ -19,10 +19,14 @@ const seeds = async (req, res) => {
     const department = await Department.find().select("-__v");
 
     let designation = await Designation.find().select("-__v");
-    designation = designation.filter(des => des.name !== "Admin");
+
+    designation = designation.filter(
+      des => des.name !== "Admin" && des.name !== "Human Resource"
+    );
 
     const kraAttributes = await Kra.find().select("-__v");
-    res.json({ reportingManager, department, designation, kraAttributes });
+    const leaves=await Leave.find().select("-__v")
+    res.json({ reportingManager, department, designation, kraAttributes,leaves});
   } catch (err) {
     console.log(err.message);
     res.status(500).send("server error");

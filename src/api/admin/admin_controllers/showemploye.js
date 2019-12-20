@@ -1,9 +1,9 @@
 const User = require("../../users/user.model");
 const showEmploye = async (req, res) => {
-  const userarr = await User.find({ name: { $nin: ["CEO"] } });
+  const userarr = await User.find({ name: { $nin: ["CEO","HR"] } });
   const userlength = userarr.length;
   const skip = Number(req.skip);
-  const user = await User.find({ name: { $nin: ["CEO"] } })
+  const user = await User.find({ name: { $nin: ["CEO","HR"] } })
     .select("prefix name gender jobStatus")
     .sort({ _id: -1 })
     .skip(skip)

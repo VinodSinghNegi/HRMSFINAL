@@ -17,6 +17,8 @@ const kraRouter = require("./src/api/kraSheets/krasheetRouters");
 const showemploye = require("./src/api/admin/admin_routers/admin_router");
 const posts=require("./src/api/posts/postrouters")
 const cors = require("cors");
+const showProfileHR = require("./src/api/HR/HR routes/hrRoutes");
+const leaves=require("./src/api/leaves/leaves.router")
 // Bodyparser middleware
 app.use(
   bodyParser.urlencoded({
@@ -36,6 +38,8 @@ app.use(passport.initialize());
 
 // Passport config
 require("./config/passport")(passport);
+app.use(showProfileHR);
+app.use(leaves)
 app.use(posts);
 app.use(showemploye);
 app.use(userRouters);

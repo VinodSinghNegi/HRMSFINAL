@@ -10,6 +10,7 @@ export const getDropdown = () => dispatch => {
         type: DROPDOWN_DATA,
         payload: { ...res.data }
       });
+    
     })
     .catch(err => {
       if (err.response.data.error === "Please authenticate") {

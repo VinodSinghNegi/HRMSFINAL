@@ -24,3 +24,8 @@ export const CLEAR_TEAM = "CLEAR_TEAM";
 export const CLEAR_USERS = "CLEAR_USERS";
 export const GRAPH_KRA = "GRAPH_KRA";
 export const PARTICULAR_EMP = "PARTICULAR_EMP";
+export const GET_LEAVE = "GET_LEAVE";
+export const APPLY_LEAVE = "APPLY_LEAVE";
+export const DELETE_LEAVE = "DELETE_LEAVE";
+export const LEAVE_SEEDS = "LEAVE_SEEDS";
+

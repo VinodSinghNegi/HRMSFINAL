@@ -17,7 +17,9 @@ import AnnouncementIcon from "@material-ui/icons/Announcement";
 import TextFieldsIcon from "@material-ui/icons/TextFields";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 import Chart from "../graph";
-
+import Applyleave from "../applyLeave";
+import { Divider } from "@material-ui/core";
+import DeckIcon from "@material-ui/icons/Deck";
 class ManagerFeatures extends Component {
   state = { disabled: false, flag: false };
 
@@ -106,6 +108,18 @@ class ManagerFeatures extends Component {
             <AnnouncementIcon />
           </ListItemIcon>
           <ListItemText primary="KRA Request" />
+        </ListItem>
+        <Divider />
+        <ListItem
+          button
+          onClick={() => {
+            this.props.changeComponent(<Applyleave />);
+          }}
+        >
+          <ListItemIcon>
+            <DeckIcon />
+          </ListItemIcon>
+          <ListItemText primary="Leave Management" />
         </ListItem>
       </div>
     );

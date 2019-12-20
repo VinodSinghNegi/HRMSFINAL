@@ -7,10 +7,13 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { Avatar, Button } from "@material-ui/core";
-import { viewUsers } from "../actions/viewUser";
+import { viewUsers, viewProfile } from "../actions/viewUser";
 import { connect } from "react-redux";
 import { Header } from "semantic-ui-react";
+import Profile from "./viewEmployeebyHr";
 
+
+import { setCurrentComponent } from "../actions/componentActions";
 const columns = [
   { id: "_id", label: "Employee Code", minWidth: 100 },
   {
@@ -94,60 +97,77 @@ function ViewUsers(props) {
     props.viewUsers(skipvalue - 2);
     setskipvalue(skipvalue - 2);
   };
-
-  return (
-    <Paper className={classes.root}>
-      <Header as="h3" content="ALL USERS" style={style.h1} textAlign="center" />
-      <div className={classes.tableWrapper}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map(column => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {allusers &&
-              allusers.map((user, i) => (
-                <TableRow key={i}>
-                  <TableCell>{`${user.prefix}${user._id}`}</TableCell>
-                  <TableCell>{user.name}</TableCell>
-                  <TableCell>{user.gender}</TableCell>
-                  <TableCell>{user.department_id.name}</TableCell>
-                  <TableCell>{user.designation_id.name}</TableCell>
-                  <TableCell align="right">
-                    {" "}
-                    {user.jobStatus === "working" ? (
-                      <Avatar className={classes.green}>W</Avatar>
-                    ) : user.jobStatus === "abscond" ? (
-                      <Avatar className={classes.red}>A</Avatar>
-                    ) : (
-                      ""
-                    )}
+  const viewProfile = userId => {
+    props.viewProfile(userId);
+    props.setCurrentComponent(<Profile />);
+  };
+  if (allusers) {
+    return (
+      <Paper className={classes.root}>
+        <Header
+          as="h3"
+          content="ALL USERS"
+          style={style.h1}
+          textAlign="center"
+        />
+        <div className={classes.tableWrapper}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                {columns.map(column => (
+                  <TableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth }}
+                  >
+                    {column.label}
                   </TableCell>
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </div>
-      <Button disabled={skipvalue <= 0 ? true : false} onClick={e => prev()}>
-        prev
-      </Button>
-      <Button
-        disabled={skipvalue >= props.userlen - 1 ? true : false}
-        onClick={e => next()}
-      >
-        next
-      </Button>
-    </Paper>
-  );
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {allusers &&
+                allusers.map((user, i) => (
+                  <TableRow
+                    key={i}
+                    onClick={() => {
+                      viewProfile(user._id);
+                    }}
+                  >
+                    <TableCell>{`${user.prefix}${user._id}`}</TableCell>
+                    <TableCell>{user.name}</TableCell>
+                    <TableCell>{user.gender}</TableCell>
+                    <TableCell>{user.department_id.name}</TableCell>
+                    <TableCell>{user.designation_id.name}</TableCell>
+                    <TableCell align="right">
+                      {" "}
+                      {user.jobStatus === "working" ? (
+                        <Avatar className={classes.green}>W</Avatar>
+                      ) : user.jobStatus === "abscond" ? (
+                        <Avatar className={classes.red}>A</Avatar>
+                      ) : (
+                        ""
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </div>
+        <Button disabled={skipvalue <= 0 ? true : false} onClick={e => prev()}>
+          prev
+        </Button>
+        <Button
+          disabled={skipvalue >= props.userlen - 1 ? true : false}
+          onClick={e => next()}
+        >
+          next
+        </Button>
+      </Paper>
+    );
+  } else {
+    return <div>no data</div>;
+  }
 }
 const mapStateToProps = state => {
   return {
@@ -156,4 +176,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { viewUsers })(ViewUsers);
+export default connect(mapStateToProps, {
+  viewUsers,
+  viewProfile,
+  setCurrentComponent
+})(ViewUsers);

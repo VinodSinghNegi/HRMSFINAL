@@ -21,7 +21,7 @@ export class OfficialDetails extends React.Component {
       });
       this.props.addUserForm.selectedreportingManager = arr[0];
       await this.setState({ reportingManager: arr });
-    } else if (design.name === "Employee/Team Lead") {
+    } else if (design.name === "Employee") {
       const arr = this.state.reportingManager.filter(rm => {
         return rm.name !== "CEO" ? true : false;
       });
